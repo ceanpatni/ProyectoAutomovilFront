@@ -1,0 +1,23 @@
+<div class="container mt-3">
+  <h3>Marcas</h3>
+  <button class="btn btn-primary mb-2" (click)="add()">Crear Marca</button>
+  <div *ngIf="loading">Cargando...</div>
+  <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+  <table class="table table-striped" *ngIf="!loading && marcas.length">
+    <thead>
+      <tr><th>ID</th><th>Nombre</th><th>País</th><th>Acciones</th></tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let m of marcas">
+        <td>{{m.id}}</td>
+        <td>{{m.nombre_marca}}</td>
+        <td>{{m.pais}}</td>
+        <td>
+          <button class="btn btn-sm btn-info" (click)="edit(m.id)">Editar</button>
+          <button class="btn btn-sm btn-danger" (click)="remove(m.id)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="!loading && !marcas.length">No hay marcas.</div>
+</div>

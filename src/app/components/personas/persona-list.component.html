@@ -1,0 +1,24 @@
+<div class="container mt-3">
+  <h3>Personas</h3>
+  <button class="btn btn-primary mb-2" (click)="add()">Crear Persona</button>
+  <div *ngIf="loading">Cargando...</div>
+  <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+  <table class="table table-striped" *ngIf="!loading && personas.length">
+    <thead>
+      <tr><th>ID</th><th>Nombre</th><th>Cédula</th><th>Acciones</th></tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of personas">
+        <td>{{p.id}}</td>
+        <td>{{p.nombre}}</td>
+        <td>{{p.cedula}}</td>
+        <td>
+          <button class="btn btn-sm btn-info" (click)="edit(p.id)">Editar</button>
+          <button class="btn btn-sm btn-danger" (click)="remove(p.id)">Eliminar</button>
+          <button class="btn btn-sm btn-secondary" (click)="showVehiculos(p.id)">Vehículos</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="!loading && !personas.length">No hay personas.</div>
+</div>

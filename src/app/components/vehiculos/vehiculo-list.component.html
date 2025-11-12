@@ -1,0 +1,26 @@
+<div class="container mt-3">
+  <h3>Vehículos</h3>
+  <button class="btn btn-primary mb-2" (click)="add()">Crear Vehículo</button>
+  <div *ngIf="loading">Cargando...</div>
+  <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+  <table class="table table-striped" *ngIf="!loading && vehiculos.length">
+    <thead>
+      <tr><th>ID</th><th>Modelo</th><th>Marca</th><th>Puertas</th><th>Color</th><th>Acciones</th></tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let v of vehiculos">
+        <td>{{v.id}}</td>
+        <td>{{v.modelo}}</td>
+        <td>{{v.marca ? (v.marca.nombre_marca || v.marca.name) : v.marca_id}}</td>
+        <td>{{v.numero_puertas}}</td>
+        <td>{{v.color}}</td>
+        <td>
+          <button class="btn btn-sm btn-info" (click)="edit(v.id)">Editar</button>
+          <button class="btn btn-sm btn-danger" (click)="remove(v.id)">Eliminar</button>
+          <button class="btn btn-sm btn-secondary" (click)="verPropietarios(v.id)">Propietarios</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="!loading && !vehiculos.length">No hay vehículos.</div>
+</div>
